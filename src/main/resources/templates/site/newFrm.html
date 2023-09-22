@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/navbar.html :: header( title = 'Sitios')}"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="~{fragments/navbar.html :: navbar( active = 'Site')}"></nav>
+            <div class="row mb-4">
+                <div class="col-md-6 offset-md-3">
+                    <h2>Nuevo Sitio</h2>
+                    <hr/>
+                    <form method="post" th:action="@{/site/save}" th:object="${site}">
+                        <div class="mb-3">
+                            <label for="sitename" class="form-label">Nombre del Sitio</label>
+                            <input type="text" class="form-control" name="sitename" id="sitename">
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="supplier" class="form-label">Locacion</label>
+                            <select class="form-select" name="supplier" id="supplier">
+                                <option th:each="supplier: ${listaLocaciones}"
+                                        th:text="${location.sity}" th:value="${location.id}">Open this select menu</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sitename" class="form-label">Nombre del Sitio</label>
+                            <input type="text" class="form-control" name="sitename" id="sitename">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sitename" class="form-label">Latitud</label>
+                            <input type="text" class="form-control" name="sitename" id="sitename">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sitename" class="form-label">Longitud</label>
+                            <input type="text" class="form-control" name="sitename" id="sitename">
+                        </div>
+
+
+
+                        <a th:href="@{/site}" class="btn btn-danger">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script th:replace="~{fragments/navbar.html :: footer-bootstrap}"></script>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <title>Editar Producto</title>
+    </head>
+    <body>
+        <main>
+            <div class="container px-4 py-5">
+                <h1 class="pb-2 mb-3 border-bottom">Editar Sitio</h1>
+                <form method="post" th:action="@{/site/save}" th:object="${site}" class="mt-2">
+                    <input th:field="*{id}" name="id" type="hidden"/>
+                    <div class="mb-3">
+                        <label class="form-label">Nombre del Sitio</label>
+                        <input th:field="*{sitename}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Locacion</label>
+                        <select class="form-select" name="supplier" id="supplier">
+                            <option th:each="location: ${listaSitios}"
+                                    th:text="${location.city}" th:value="${location.id}"
+                                    th:selected="${site.location.id == location.id}">Open this select menu</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha</label>
+                        <input th:field="*{sitedate}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Latitud</label>
+                        <input th:field="*{sitelatitude}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Longitud</label>
+                        <input th:field="*{sitelongitude}" type="text" class="form-control">
+                    </div>
+
+
+                    <a th:href="@{/site}" class="btn btn-danger">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </main>
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>

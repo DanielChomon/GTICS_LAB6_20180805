@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar.html :: header( title = 'Sitios')}"></head>
+<body>
+<main>
+  <div class="container px-4 pb-5">
+    <nav th:replace="~{fragments/navbar.html :: navbar( active = 'Site')}"></nav>
+    <h1 class="pb-2 border-bottom">Lista Productos</h1>
+    <div class="container px-4 py-5">
+      <h1 class="pb-2 border-bottom">Gestión de Gtics F</h1>
+      <a th:href="@{/sites}">Sitios</a><br/>
+      <a th:href="@{/devices}">Equipos</a>
+      <a th:href="@{/sites/stats}">Estadisticas</a>
+    </div>
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{'/site/new'}">Nuevo Producto</a>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Locacion</th>
+        <th></th>
+        <th>Fecha</th>
+        <th>Latitud</th>
+        <th>longitud</th>
+
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product, info : ${listaSitios}">
+        <td th:text="${info.index + 1}"></td>
+        <td th:text="${site.sitename}"></td>
+        <td th:text="${site.location.country}"></td>
+        <td th:text="${site.location.city}"></td>
+        <td th:text="${site.date}"></td>
+        <td th:text="${site.latitude}"></td>
+        <td th:text="${site.longitude}"></td>
+        <td><a class="btn btn-primary"
+               th:href="@{'/site/edit' + '?id=' + ${site.id}}">Editar</a>
+        </td>
+        <td><a class="btn btn-danger"
+               th:href="@{'/site/delete' + '?id=' + ${site.id}}">Borrar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script th:replace="~{fragments/navbar.html :: footer-bootstrap}"></script>
+</body>
+</html>
